@@ -1,0 +1,5 @@
+outs:
+- md5: dfa68ee5d2154225aa0ad054218df26f
+  size: 980236
+  hash: md5
+  path: credit_memos.jsonl

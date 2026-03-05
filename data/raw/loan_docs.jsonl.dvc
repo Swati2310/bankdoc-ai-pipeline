@@ -1,0 +1,5 @@
+outs:
+- md5: 372c048c2492b9c17ac647b80f1cc4ae
+  size: 2955394
+  hash: md5
+  path: loan_docs.jsonl

@@ -1,0 +1,36 @@
+stages:
+  generate_loan_docs:
+    cmd: python data/synthetic/generate_loan_docs.py --num_samples 1000 --output data/raw/loan_docs.jsonl
+    deps:
+      - data/synthetic/generate_loan_docs.py
+    outs:
+      - data/raw/loan_docs.jsonl
+
+  generate_credit_memos:
+    cmd: python data/synthetic/generate_credit_memos.py --num_samples 500 --output data/raw/credit_memos.jsonl
+    deps:
+      - data/synthetic/generate_credit_memos.py
+    outs:
+      - data/raw/credit_memos.jsonl
+
+  generate_kyc_forms:
+    cmd: python data/synthetic/generate_kyc_forms.py --num_samples 500 --output data/raw/kyc_forms.jsonl
+    deps:
+      - data/synthetic/generate_kyc_forms.py
+    outs:
+      - data/raw/kyc_forms.jsonl
+
+  preprocess:
+    cmd: python data/preprocessing.py --input_dir data/raw/ --output_dir data/processed/
+    deps:
+      - data/preprocessing.py
+      - data/raw/loan_docs.jsonl
+      - data/raw/credit_memos.jsonl
+      - data/raw/kyc_forms.jsonl
+    outs:
+      - data/processed/ner_train.jsonl
+      - data/processed/ner_eval.jsonl
+      - data/processed/clause_train.jsonl
+      - data/processed/clause_eval.jsonl
+      - data/processed/risk_train.jsonl
+      - data/processed/risk_eval.jsonl
