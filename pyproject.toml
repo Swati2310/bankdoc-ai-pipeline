@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "bankdoc-ai-pipeline"
+version = "0.1.0"
+description = "Enterprise Document Intelligence Pipeline using LoRA & QLoRA"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+
+dependencies = [
+    "torch>=2.1.0",
+    "transformers>=4.38.0",
+    "peft>=0.9.0",
+    "trl>=0.7.0",
+    "bitsandbytes>=0.43.0",
+    "datasets>=2.18.0",
+    "accelerate>=0.27.0",
+    "sentencepiece>=0.2.0",
+    "protobuf>=4.25.0",
+    "scipy>=1.12.0",
+    "faker>=24.0.0",
+    "pymupdf>=1.23.0",
+    "python-docx>=1.1.0",
+    "mlflow>=2.11.0",
+    "wandb>=0.16.0",
+    "dvc>=3.47.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.6.0",
+    "gradio>=4.20.0",
+    "evidently>=0.4.15",
+    "pyyaml>=6.0.1",
+    "rich>=13.7.0",
+    "typer>=0.9.0",
+    "loguru>=0.7.2",
+    "scikit-learn>=1.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.3.0",
+    "mypy>=1.8.0",
+    "pre-commit>=3.6.0",
+    "ipykernel>=6.29.0",
+    "jupyter>=1.0.0",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-v --tb=short"

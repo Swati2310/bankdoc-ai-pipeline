@@ -1,0 +1,20 @@
+services:
+  api:
+    build: .
+    image: bankdoc-ai-pipeline:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./results:/app/results
+      - ./configs:/app/configs
+    environment:
+      - WANDB_API_KEY=${WANDB_API_KEY:-}
+      - MLFLOW_TRACKING_URI=${MLFLOW_TRACKING_URI:-./mlruns}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
